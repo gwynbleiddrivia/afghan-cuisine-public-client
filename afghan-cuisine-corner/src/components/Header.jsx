@@ -1,7 +1,15 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import {Link} from 'react-router-dom'
+import {AuthContext} from '../providers/AuthProviders'
 
 const Header = () => {
+	const {user, logOut} = useContext(AuthContext)
+
+	const handleLogOut = () =>{
+		logOut()
+		.then(()=>{})
+		.catch(error=>console.error(error))
+	}
 	return (
 		<div>
 			<div className="navbar bg-base-100 flex justify-center">
@@ -12,9 +20,30 @@ const Header = () => {
 			    <ul className="menu menu-horizontal px-1 flex justify-center gap-1">
 				    <Link className="btn btn-ghost" to="/">Home</Link>
 				    <Link className="btn btn-ghost"to="/blog">Blog</Link>
-				    <Link className="btn btn-ghost"to="/login">Login</Link>
 				    <Link className="btn btn-ghost"to="/register">Register</Link>
-			      <img className="w-10 h-10 rounded-xl" src="https://alanzo.ancorathemes.com/wp-content/uploads/2017/09/testi-2-150x150.jpg"/>
+
+			{
+				user ? 
+				<>
+			  	    <img className="w-10 h-10 rounded-xl" src={
+				    user.photoURL?
+				    user.photoURL:
+				    "https://img.freepik.com/free-vector/cute-bot-say-users-hello-chatbot-greets-online-consultation_80328-195.jpg"
+				    }/>
+				</> :
+				    <Link className="btn btn-ghost"to="/login">Login</Link>
+			}
+
+
+			{
+				user ?
+				<>
+					<span>{user.email}</span>
+					<button onClick={handleLogOut} className="btn btn-ghost">Signout</button>
+				</> :
+				<></>
+			}
+
 			    </ul>
 			  </div>
 			</div>
