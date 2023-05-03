@@ -20,18 +20,24 @@ const Header = () => {
 			    <ul className="menu menu-horizontal px-1 flex justify-center gap-1">
 				    <Link className="btn btn-ghost" to="/">Home</Link>
 				    <Link className="btn btn-ghost"to="/blog">Blog</Link>
-				    <Link className="btn btn-ghost"to="/register">Register</Link>
+				    <Link className="btn btn-ghost"to="/register">New here? Click here to Sign Up</Link>
 
 			{
 				user ? 
 				<>
-			  	    <img className="w-10 h-10 rounded-xl" src={
+			  	    <img className="w-10 h-10 rounded-xl" 
+				    title={
+				    user.name?
+				    user.name:
+				    "Name not registered"
+				    } 
+				    src={
 				    user.photoURL?
 				    user.photoURL:
 				    "https://img.freepik.com/free-vector/cute-bot-say-users-hello-chatbot-greets-online-consultation_80328-195.jpg"
 				    }/>
 				</> :
-				    <Link className="btn btn-ghost"to="/login">Login</Link>
+				    <Link className="btn btn-ghost"to="/login">Have an account? Click Here to Login</Link>
 			}
 
 
@@ -39,7 +45,7 @@ const Header = () => {
 				user ?
 				<>
 					<span>{user.email}</span>
-					<button onClick={handleLogOut} className="btn btn-ghost">Signout</button>
+					<button onClick={handleLogOut} className="btn btn-ghost">Logout</button>
 				</> :
 				<></>
 			}

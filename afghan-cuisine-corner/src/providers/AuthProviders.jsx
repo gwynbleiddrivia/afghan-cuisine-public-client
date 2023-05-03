@@ -50,9 +50,11 @@ const AuthProviders = ({children}) => {
 	},[])
 
 	const signInGithub = () =>{
+		setLoading(true)
 		return signInWithPopup(auth, providerGithub)
 	}
 	const signInGoogle = () =>{
+		setLoading(true)
 		return signInWithPopup(auth, providerGoogle)
 	}
 
@@ -64,7 +66,8 @@ const AuthProviders = ({children}) => {
 		signInUser,
 		signInGithub,
 		signInGoogle,
-		logOut
+		logOut,
+		loading
 	}
 	return (
 		<AuthContext.Provider value={authInfo}>

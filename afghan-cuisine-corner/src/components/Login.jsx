@@ -3,7 +3,7 @@ import {AuthContext} from '../providers/AuthProviders'
 import {Link} from 'react-router-dom'
 
 const Login = () => {
-	const {user, signInUser, signInGithub, signInGoogle, logOut} = useContext(AuthContext)
+	const {user, signInUser, signInGithub, signInGoogle, logOut, loading} = useContext(AuthContext)
 	console.log(user)
 	
 	const handleLogin = event => {
@@ -24,6 +24,8 @@ const Login = () => {
 		.then(result=>{
 			const loggedGithubUser = result.user
 			console.log(loggedGithubUser)
+			result.user['name'] = result.user.reloadUserInfo.providerUserInfo[0]
+.screenName
 		})
 		.catch(error=>console.log(error))
 	}
@@ -32,12 +34,14 @@ const Login = () => {
 		.then(result=>{
 			const loggedGoogleUser = result.user
 			console.log(loggedGoogleUser)
+			result.user['name'] = result.user.displayName
 		})
 		.catch(error=>console.log(error))
 	}
 
 	return (
-		<div>
+		<div> { loading?
+					<div className="radial-progress" style={{ "--value": "70", "--size": "12rem", "--thickness": "2px" }}>You are <br/>logging in.<br/> Please wait...</div>: <>
 			<div className="hero min-h-screen bg-base-200">
 			  <div className="hero-content flex-col lg:flex-row-reverse">
 			    <div className="text-center lg:text-left">
@@ -72,7 +76,7 @@ const Login = () => {
 			    </div>
 			  </div>
 			</div>
-
+			</>}
 		</div>
 	);
 };
