@@ -1,6 +1,6 @@
 import React,{useContext} from 'react'
 import {AuthContext} from '../providers/AuthProviders'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate, useLocation} from 'react-router-dom'
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 
 
@@ -8,6 +8,10 @@ const Login = () => {
 	const {user, signInUser, signInGithub, signInGoogle, logOut, loading} = useContext(AuthContext)
 	console.log(user)
 	
+	const navigate = useNavigate()
+	const location = useLocation()
+	const from = location.state?.from?.pathname || "/"
+
 	const handleLogin = event => {
 	event.preventDefault()
 	const email = event.target.email.value
@@ -16,6 +20,7 @@ const Login = () => {
 	.then(result=>{
 		const loggedUser = result.user
 		console.log(loggedUser)
+		navigate(from,{replace:true})
 	})
 	.catch(error=>{
 		console.log(error.message)
@@ -26,8 +31,8 @@ const Login = () => {
 		.then(result=>{
 			const loggedGithubUser = result.user
 			console.log(loggedGithubUser)
-			result.user['name'] = result.user.reloadUserInfo.providerUserInfo[0]
-.screenName
+			result.user['name'] = result.user.reloadUserInfo.providerUserInfo[0].screenName
+			navigate(from,{replace:true})
 		})
 		.catch(error=>console.log(error))
 	}
@@ -37,6 +42,7 @@ const Login = () => {
 			const loggedGoogleUser = result.user
 			console.log(loggedGoogleUser)
 			result.user['name'] = result.user.displayName
+			navigate(from,{replace:true})
 		})
 		.catch(error=>console.log(error))
 	}

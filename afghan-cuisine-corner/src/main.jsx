@@ -8,7 +8,9 @@ import Login from './components/Login.jsx'
 import Register from './components/Register.jsx'
 import Recipes from './components/Recipes.jsx'
 import Blog from './components/Blog.jsx'
+import PrivateRoute from './components/PrivateRoute.jsx'
 import AuthProviders from './providers/AuthProviders.jsx'
+
 
 import {
   createBrowserRouter,
@@ -38,7 +40,7 @@ const router = createBrowserRouter([
 	},
 	{
 		path:"/recipes/:id",
-		element: <Recipes></Recipes>,
+		element: <PrivateRoute>  <Recipes></Recipes> </PrivateRoute> ,
 		loader: ()=>fetch('https://afghan-cuisine-corner-server-gwynbleiddrivia.vercel.app/chefs')
 	},
     ]
