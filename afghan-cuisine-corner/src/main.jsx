@@ -31,7 +31,8 @@ const router = createBrowserRouter([
 	},
 	{
 		path:"/blog",
-		element: <Blog></Blog>
+		element: <Blog></Blog>,
+		loader: ()=>fetch('https://afghan-cuisine-corner-server-gwynbleiddrivia.vercel.app/blog')
 	},
 	{
 		path:"/login",
