@@ -6,6 +6,7 @@ import Main from './layout/Main.jsx'
 import Home from './components/Home.jsx'
 import Login from './components/Login.jsx'
 import Register from './components/Register.jsx'
+import Recipes from './components/Recipes.jsx'
 import Blog from './components/Blog.jsx'
 import AuthProviders from './providers/AuthProviders.jsx'
 
@@ -34,6 +35,11 @@ const router = createBrowserRouter([
 	{
 		path:"/register",
 		element: <Register></Register>
+	},
+	{
+		path:"/recipes/:id",
+		element: <Recipes></Recipes>,
+		loader: ()=>fetch('https://afghan-cuisine-corner-server-gwynbleiddrivia.vercel.app/chefs')
 	},
     ]
   },

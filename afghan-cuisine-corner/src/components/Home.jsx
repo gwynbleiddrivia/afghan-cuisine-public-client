@@ -1,5 +1,6 @@
 import React, {useContext} from 'react'
 import {AuthContext} from '../providers/AuthProviders'
+import {Link} from 'react-router-dom'
 
 const Home = () => {
 	const {chefdata} = useContext(AuthContext)
@@ -18,7 +19,9 @@ const Home = () => {
 								<p>Number of recipes: {singlechef.num_of_recipes}</p>
 								<p>Likes: {singlechef.likes}</p>
 						        </div>
-							<button className="w-fit ml-auto mr-auto btn btn-outline">View Recipes</button>
+							<Link to={`/recipes/${singlechef.id}`}>
+							<button className="w-fit ml-auto mr-auto btn btn-success">View Recipes</button>
+							</Link>
 					       </div>	
 				})
 			}
