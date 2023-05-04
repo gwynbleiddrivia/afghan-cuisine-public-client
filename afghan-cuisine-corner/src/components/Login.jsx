@@ -1,6 +1,8 @@
 import React,{useContext} from 'react'
 import {AuthContext} from '../providers/AuthProviders'
 import {Link} from 'react-router-dom'
+import { FaGithub, FaGoogle } from 'react-icons/fa';
+
 
 const Login = () => {
 	const {user, signInUser, signInGithub, signInGoogle, logOut, loading} = useContext(AuthContext)
@@ -71,8 +73,15 @@ const Login = () => {
 				</div>
 			      </form>
 {/*Form ended here*/}	
-				<button onClick={handleGithubLogIn} className="btn btn-primary">Github Login</button>
-				<button onClick={handleGoogleLogIn} className="btn btn-primary">Google Login</button>
+				<small className="mb-2">Or do you want to log in by Github or Google account?</small>
+				<button onClick={handleGithubLogIn} className="btn btn-outline mb-4 flex justify-between">
+					Github Login
+					<FaGithub/>			
+				</button>
+				<button onClick={handleGoogleLogIn} className="btn btn-outline flex justify-between">
+					Google Login
+					<FaGoogle/>
+				</button>
 			    </div>
 			  </div>
 			</div>

@@ -1,5 +1,5 @@
 import React,{useContext} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 import {AuthContext} from '../providers/AuthProviders'
 
 const Header = () => {
@@ -18,9 +18,9 @@ const Header = () => {
 			  </div>
 			  <div className="flex-none">
 			    <ul className="menu menu-horizontal px-1 flex justify-center gap-1">
-				    <Link className="btn btn-ghost" to="/">Home</Link>
-				    <Link className="btn btn-ghost"to="/blog">Blog</Link>
-				    <Link className="btn btn-ghost"to="/register">New here? Click here to Sign Up</Link>
+                     <NavLink to='/' className={({ isActive }) =>isActive ? "btn btn-success" : "btn btn-ghost"}>Home</NavLink>
+                     <NavLink to='/blog' className={({ isActive }) =>isActive ? "btn btn-success" : "btn btn-ghost"}>Blog</NavLink>
+                     <NavLink to='/register' className={({ isActive }) =>isActive ? "btn btn-success" : "btn btn-ghost"}>Register</NavLink>
 
 			{
 				user ? 
@@ -37,7 +37,7 @@ const Header = () => {
 				    "https://img.freepik.com/free-vector/cute-bot-say-users-hello-chatbot-greets-online-consultation_80328-195.jpg"
 				    }/>
 				</> :
-				    <Link className="btn btn-ghost"to="/login">Have an account? Click Here to Login</Link>
+                     		    <NavLink to='/login' className={({ isActive }) =>isActive ? "btn btn-success" : "btn btn-ghost"}>Have an account? Click Here to Login</NavLink>
 			}
 
 

@@ -1,9 +1,10 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 import {AuthContext} from '../providers/AuthProviders'
 import {Link} from 'react-router-dom'
 
 const Register = () => {
 	const {user, createUser} = useContext(AuthContext)
+	const [error, setError] = useState("")
 	console.log(user)
 	
 	const handleRegister= event =>{
@@ -14,25 +15,29 @@ const Register = () => {
 		const photoURL = event.target.photoURL
 		console.log(name, email, password, photoURL)
 
-		if(photoURL){
-			console.log("na thik nai")
+		if(email===""){
+			setError("You cannot pass empty email or password")
 		}
-		else{
-			console.log("thik ache")
+		if(password===""){
+			setError("You cannot pass empty email or password")
+		}
+		if(password !=="" && password.length<6){
+			setError("Password length should be less than 6")
 		}
 
-
+		
 		createUser(email,password)
 		.then(result=>{
 			const loggedUser = result.user
 			console.log(loggedUser)
+			result.user['name'] = name
+			result.user['photoURL'] = photoURL
 			form.reset()
 		})
 		.catch(error=>{
 			console.log(error.message)
 		})
 		
-
 	}
 
 	return (
@@ -48,15 +53,29 @@ const Register = () => {
 {/*Form started here*/}
 				<div className="form-control">
 				  <label className="label">
+				    <span className="label-text">Name</span>
+				  </label>
+				  <input type="text" name="name" placeholder="Your name" className="input input-bordered"/>
+				</div>
+
+				<div className="form-control">
+				  <label className="label">
+				    <span className="label-text">Photo URL</span>
+				  </label>
+				  <input type="text" name="photoURL" placeholder="Your photo URL" className="input input-bordered"/>
+				</div>
+
+				<div className="form-control">
+				  <label className="label">
 				    <span className="label-text">Email</span>
 				  </label>
-				  <input type="email" name="email" placeholder="email" className="input input-bordered" required/>
+				  <input type="email" name="email" placeholder="email" className="input input-bordered" />
 				</div>
 				<div className="form-control">
 				  <label className="label">
 				    <span className="label-text">Password</span>
 				  </label>
-				  <input type="password" name="password" placeholder="password" className="input input-bordered" required/>
+				  <input type="password" name="password" placeholder="password" className="input input-bordered" />
 				  <label className="label">
                                     <Link to="/login" className="label-text-alt link link-hover">Already have an account?</Link>
 				  </label>
@@ -66,6 +85,9 @@ const Register = () => {
 				</div>
 			      </form>
 {/*Form ended here*/}
+				{
+					<h1 className="text-red-500">{error}</h1>
+				}
 			    </div>
 			  </div>
 			</div>

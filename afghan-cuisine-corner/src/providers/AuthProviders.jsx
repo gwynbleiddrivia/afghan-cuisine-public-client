@@ -3,10 +3,12 @@ import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, on
 import app from '../../firebase.config'
 
 
+
 const auth = getAuth(app)
 
 const providerGithub = new GithubAuthProvider()
 const providerGoogle = new GoogleAuthProvider();
+
 
 
 export const AuthContext = createContext(null)
@@ -14,29 +16,38 @@ export const AuthContext = createContext(null)
 
 const AuthProviders = ({children}) => {
 
-//To check if user is signed it
+{/*This is all the chefs data from deployed server*/}
+	const [chefdata, setChefdata] = useState([])
+	useEffect(()=>{
+		fetch('https://afghan-cuisine-corner-server-gwynbleiddrivia.vercel.app/chefs')
+		.then(res=>res.json())
+		.then(data=>setChefdata(data))
+	},[])
+
+
+{/*To check if user is signed it*/}
 	const [user, setUser] = useState(null)
 
-//To check if page is still loading, will be set true of a user is logged in
+{/*To check if page is still loading, will be set true of a user is logged in*/}
 	const [loading, setLoading] = useState(true)
 
-//To create user
+{/*To create user*/}
 	const createUser = (email,password) => {
 		setLoading(true)
 		return createUserWithEmailAndPassword(auth, email, password)
 	}
 
-//To log in user
+{/*To log in user*/}
 	const signInUser = (email,password) => {
 		setLoading(true)
 		return signInWithEmailAndPassword(auth, email, password)
 	}
-//To log out user
+{/*To log out user*/}
 	const logOut = () => {
 		return signOut(auth)
 	}
 
-//To check if state of user logging in changed or not
+{/*To check if state of user logging in changed or not*/}
 	useEffect(()=>{
 		const unsubscribe = onAuthStateChanged(auth, currentUser=>{
 			setUser(currentUser)
@@ -59,7 +70,7 @@ const AuthProviders = ({children}) => {
 	}
 
 
-//All the variable which will be passed through context api
+{/*All the variable which will be passed through context api*/}
 	const authInfo={
 		user,
 		createUser,
@@ -67,7 +78,8 @@ const AuthProviders = ({children}) => {
 		signInGithub,
 		signInGoogle,
 		logOut,
-		loading
+		loading,
+		chefdata
 	}
 	return (
 		<AuthContext.Provider value={authInfo}>
