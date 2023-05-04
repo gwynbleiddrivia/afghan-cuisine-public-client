@@ -2,16 +2,29 @@ import React, {useContext} from 'react'
 import {AuthContext} from '../providers/AuthProviders'
 import {Link} from 'react-router-dom'
 import LazyLoad from 'react-lazy-load';
+import HomeBanner from './HomeBanner'
+import Footer from './Footer'
+import FirstExtra from './FirstExtra'
+import SecondExtra from './SecondExtra'
 
 
 const Home = () => {
 	const {chefdata, loading} = useContext(AuthContext)
 	console.log(chefdata)
 	return (
-		<div>{ loading?
-		<div className="radial-progress" style={{ "--value": "70", "--      size": "12rem", "--thickness": "2px" }}>Loading<br/> Please wait...</div>: <>
+		
+		<div>
+{/*Banner*/}
+		<HomeBanner></HomeBanner>
+{/*FirstExtra*/}
+		<FirstExtra></FirstExtra>
 
-		<LazyLoad height={762}>
+
+{/*Cards*/}
+		{ loading?
+		<div className="radial-progress" style={{ "--value": "70", "--      size": "12rem", "--thickness": "2px" }}>Loading<br/> Please wait...</div>: <>
+		
+
 		
 		<div className="mt-12 flex flex-col align-items">
 			<div className="grid grid-cols-3 gap-8">
@@ -33,9 +46,14 @@ const Home = () => {
 			}
 			</div>
 		</div>
-    </LazyLoad>
 
 		</>}
+		
+
+{/*SecondExtra*/}
+		<SecondExtra></SecondExtra>
+
+
 	 </div>
 	);
 };

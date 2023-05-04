@@ -9,7 +9,10 @@ import Register from './components/Register.jsx'
 import Recipes from './components/Recipes.jsx'
 import Blog from './components/Blog.jsx'
 import PrivateRoute from './components/PrivateRoute.jsx'
+import ErrorPage from './components/ErrorPage.jsx'
+
 import AuthProviders from './providers/AuthProviders.jsx'
+
 
 
 import {
@@ -43,8 +46,11 @@ const router = createBrowserRouter([
 		element: <PrivateRoute>  <Recipes></Recipes> </PrivateRoute> ,
 		loader: ()=>fetch('https://afghan-cuisine-corner-server-gwynbleiddrivia.vercel.app/chefs')
 	},
-    ]
-  },
+]},
+{
+		path:"*",
+		element: <ErrorPage></ErrorPage>
+}
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
