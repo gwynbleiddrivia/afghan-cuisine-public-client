@@ -22,7 +22,7 @@ const Register = () => {
 			setError("You cannot pass empty email or password")
 		}
 		if(password !=="" && password.length<6){
-			setError("Password length should be less than 6")
+			setError("Password length should not be less than 6")
 		}
 
 		
@@ -46,7 +46,7 @@ const Register = () => {
 			  <div className="hero-content flex-col lg:flex-row-reverse">
 			    <div className="text-center lg:text-left">
 			      <h1 className="text-5xl font-bold">Please Register!</h1>
-			      <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+			      <p className="py-6">You must enter your email and password to register. Name and photo is optional.</p>
 			    </div>
 			    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
 			      <form onSubmit={handleRegister} className="card-body">
@@ -81,7 +81,7 @@ const Register = () => {
 				  </label>
 				</div>
 				<div className="form-control mt-6">
-				  <button className="btn btn-primary">Register</button>
+				  <button className="btn btn-success">Register</button>
 				</div>
 			      </form>
 {/*Form ended here*/}

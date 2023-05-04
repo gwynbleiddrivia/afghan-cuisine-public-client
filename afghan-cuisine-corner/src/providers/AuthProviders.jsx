@@ -21,7 +21,10 @@ const AuthProviders = ({children}) => {
 	useEffect(()=>{
 		fetch('https://afghan-cuisine-corner-server-gwynbleiddrivia.vercel.app/chefs')
 		.then(res=>res.json())
-		.then(data=>setChefdata(data))
+		.then(data=>{
+		setChefdata(data)
+		setLoading(false)
+		})
 	},[])
 
 

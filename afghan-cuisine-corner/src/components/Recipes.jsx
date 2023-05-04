@@ -1,14 +1,24 @@
 import React from 'react'
 import {useParams, useLoaderData} from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toast'
+
 
 const Recipes = () => {
+	const favorite = (event) =>{
+	    event.currentTarget.disabled = true;
+	    toast.success('This recipe is now your favorite!')
+	}
+
 	const chefdata = useLoaderData()
 	const {id} = useParams()
 	const selectedChef = chefdata.find(singlechef=>singlechef.id==id)
 	const recipes = selectedChef.recipes
+	
+
 	return (
 
 	<div className="flex flex-col align-items">
+	<ToastContainer/>
 
                         <div className="grid grid-cols-3 gap-8">
                         {
@@ -33,7 +43,7 @@ const Recipes = () => {
 								<br/>
 								<br/>
                                                         </div>
-                                                        <button className="w-fit ml-auto mr-auto btn btn-success">Mark as Favorite!</button>
+                                                        <button onClick={favorite} className="w-fit ml-auto mr-auto btn btn-success">Mark as Favorite!</button>
                                                </div>   
                                 })
                         }
