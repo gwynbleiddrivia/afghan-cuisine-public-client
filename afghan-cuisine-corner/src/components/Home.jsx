@@ -27,7 +27,7 @@ const Home = () => {
 
 		
 		<div className="mt-12 flex flex-col align-items">
-			<div className="grid grid-cols-3 gap-8">
+			<div className="lg:grid lg:grid-cols-3 lg:gap-8 flex flex-col gap-4">
 			{
 				chefdata.map(singlechef=>{
 					return <div className="pb-5 flex flex-col gap-8 backdrop-opacity-10 backdrop-invert bg-white/10" key={singlechef.id}>

@@ -3,9 +3,9 @@ import React from 'react'
 const SecondExtra = () => {
 	return (
 		<div>
-			<section className="backdrop-opacity-10 backdrop-invert flex flex-row-reverse gap-5 mt-10">
+			<section className="backdrop-opacity-10 backdrop-invert flex lg:flex-row-reverse gap-5 mt-10 flex-col">
 
-					<img src="https://img.freepik.com/free-photo/breakfast-set-with-scrambled-eggs-olives-white-cheese-cucumbers-tomatoes-tea_140725-8359.jpg?w=900&t=st=1683215124~exp=1683215724~hmac=f5e32986fd6a63b8690aeba3a78dca10223d93f64f009a46cbd5ae78a72d3bce" alt="" className="w-1/2 h-contain"/>  
+					<img src="https://img.freepik.com/free-photo/breakfast-set-with-scrambled-eggs-olives-white-cheese-cucumbers-tomatoes-tea_140725-8359.jpg?w=900&t=st=1683215124~exp=1683215724~hmac=f5e32986fd6a63b8690aeba3a78dca10223d93f64f009a46cbd5ae78a72d3bce" alt="" className="lg:w-1/2 w-fit h-contain"/>  
 					<div className="flex flex-col m-auto gap-4 pl-4">
 						
 						<div className="border border-black p-4 rounded-lg text-start flex flex-col gap-2 mt-3">
